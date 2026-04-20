@@ -237,5 +237,27 @@ namespace DoAnNhom
 
             suppressListSelectionPlayback = false; // Mở khóa
         }
+
+        private void Them_Anh_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+            // Chỉ lọc ra các file ảnh (bao gồm cả gif)
+            openFile.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
+
+            if (openFile.ShowDialog() == DialogResult.OK)
+            {
+                // 1. Dọn dẹp ảnh cũ (nếu có) để giải phóng bộ nhớ
+                if (pictureBox1.Image != null)
+                {
+                    pictureBox1.Image.Dispose();
+                }
+
+                // 2. Load ảnh mới (kể cả GIF động) vào PictureBox
+                pictureBox1.Image = Image.FromFile(openFile.FileName);
+
+                // 3. Chỉnh cho ảnh vừa vặn với khung
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+        }
     }
 }
