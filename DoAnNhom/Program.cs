@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using WMPLib; // Thư viện điều khiển Windows Media Player ngầm
 
 namespace MCplaylist
-{// --- 1. SINGLE LINKED LIST (Dùng cho Lịch sử nghe nhạc) ---
+{// --- 1. SINGLE LINKED LIST ---
     public class SNode
     {
         public object data;
@@ -16,7 +16,6 @@ namespace MCplaylist
     public class SingleLinkedList
     {
         public SNode header;
-        public SingleLinkedList() { this.header = new SNode("HistoryHeader"); }
 
         // Thêm bài mới vào ĐẦU danh sách (Bài vừa nghe xong hiện lên trên cùng)
         public void AddFirst(string filePath)
