@@ -63,6 +63,16 @@ namespace DoAnNhom.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _1778549697387 {
+            get {
+                object obj = ResourceManager.GetObject("1778549697387", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _2de928a6b9fe4026caeec0fd810062f1c251fb97 {
             get {
                 object obj = ResourceManager.GetObject("2de928a6b9fe4026caeec0fd810062f1c251fb97", resourceCulture);
@@ -156,6 +166,26 @@ namespace DoAnNhom.Properties {
         internal static System.Drawing.Bitmap them_anh {
             get {
                 object obj = ResourceManager.GetObject("them_anh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap them_anh_preview_rev_1 {
+            get {
+                object obj = ResourceManager.GetObject("them_anh_preview_rev_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap z7816089034704_01642787aab741b42368ab2822efed30 {
+            get {
+                object obj = ResourceManager.GetObject("z7816089034704_01642787aab741b42368ab2822efed30", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

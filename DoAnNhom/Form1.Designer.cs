@@ -133,9 +133,9 @@ namespace DoAnNhom
             // 
             previous.BackgroundImage = Properties.Resources.previous;
             previous.BackgroundImageLayout = ImageLayout.Stretch;
-            previous.Location = new Point(25, 489);
+            previous.Location = new Point(41, 504);
             previous.Name = "previous";
-            previous.Size = new Size(80, 78);
+            previous.Size = new Size(74, 63);
             previous.TabIndex = 9;
             previous.UseVisualStyleBackColor = true;
             previous.Click += previous_Click;
@@ -144,9 +144,9 @@ namespace DoAnNhom
             // 
             play.BackgroundImage = Properties.Resources.play;
             play.BackgroundImageLayout = ImageLayout.Stretch;
-            play.Location = new Point(132, 489);
+            play.Location = new Point(159, 504);
             play.Name = "play";
-            play.Size = new Size(80, 78);
+            play.Size = new Size(64, 63);
             play.TabIndex = 10;
             play.UseVisualStyleBackColor = true;
             play.Click += play_Click;
@@ -155,9 +155,9 @@ namespace DoAnNhom
             // 
             pause.BackgroundImage = Properties.Resources.stop;
             pause.BackgroundImageLayout = ImageLayout.Stretch;
-            pause.Location = new Point(252, 489);
+            pause.Location = new Point(268, 504);
             pause.Name = "pause";
-            pause.Size = new Size(83, 78);
+            pause.Size = new Size(67, 63);
             pause.TabIndex = 11;
             pause.UseVisualStyleBackColor = true;
             pause.Click += pause_Click;
@@ -166,9 +166,9 @@ namespace DoAnNhom
             // 
             ADD.BackColor = Color.Bisque;
             ADD.Font = new Font("Minecraft", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ADD.Location = new Point(702, 479);
+            ADD.Location = new Point(702, 504);
             ADD.Name = "ADD";
-            ADD.Size = new Size(162, 73);
+            ADD.Size = new Size(162, 48);
             ADD.TabIndex = 13;
             ADD.Text = "ADD";
             ADD.UseVisualStyleBackColor = false;
@@ -178,9 +178,9 @@ namespace DoAnNhom
             // 
             Remove.BackColor = Color.Bisque;
             Remove.Font = new Font("Minecraft", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Remove.Location = new Point(870, 479);
+            Remove.Location = new Point(870, 504);
             Remove.Name = "Remove";
-            Remove.Size = new Size(146, 73);
+            Remove.Size = new Size(146, 48);
             Remove.TabIndex = 14;
             Remove.Text = "REMOVE";
             Remove.UseVisualStyleBackColor = false;
@@ -213,9 +213,9 @@ namespace DoAnNhom
             Saudo.BackColor = SystemColors.ActiveCaption;
             Saudo.BackgroundImage = Properties.Resources.next;
             Saudo.BackgroundImageLayout = ImageLayout.Stretch;
-            Saudo.Location = new Point(375, 489);
+            Saudo.Location = new Point(382, 504);
             Saudo.Name = "Saudo";
-            Saudo.Size = new Size(86, 78);
+            Saudo.Size = new Size(74, 63);
             Saudo.TabIndex = 18;
             Saudo.UseVisualStyleBackColor = false;
             Saudo.Click += Saudo_Click;
