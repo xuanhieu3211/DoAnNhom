@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\LamNguyenXuanHieuXD\\source\\repos\\DoAnNhom\\anotherone\\DoAnNhom\\DoAnNhom.csproj": {}
+    "C:\\DoAnCTDL&GT\\DoAnNhom\\DoAnNhom.csproj": {}
   },
   "projects": {
-    "C:\\Users\\LamNguyenXuanHieuXD\\source\\repos\\DoAnNhom\\anotherone\\DoAnNhom\\DoAnNhom.csproj": {
+    "C:\\DoAnCTDL&GT\\DoAnNhom\\DoAnNhom.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LamNguyenXuanHieuXD\\source\\repos\\DoAnNhom\\anotherone\\DoAnNhom\\DoAnNhom.csproj",
+        "projectUniqueName": "C:\\DoAnCTDL&GT\\DoAnNhom\\DoAnNhom.csproj",
         "projectName": "DoAnNhom",
-        "projectPath": "C:\\Users\\LamNguyenXuanHieuXD\\source\\repos\\DoAnNhom\\anotherone\\DoAnNhom\\DoAnNhom.csproj",
-        "packagesPath": "C:\\Users\\LamNguyenXuanHieuXD\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LamNguyenXuanHieuXD\\source\\repos\\DoAnNhom\\anotherone\\DoAnNhom\\obj\\",
+        "projectPath": "C:\\DoAnCTDL&GT\\DoAnNhom\\DoAnNhom.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "C:\\DoAnCTDL&GT\\DoAnNhom\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\LamNguyenXuanHieuXD\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -70,7 +70,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

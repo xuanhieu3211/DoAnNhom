@@ -43,7 +43,6 @@ namespace DoAnNhom
             pause = new Button();
             ADD = new Button();
             Remove = new Button();
-            KeoLen = new Button();
             KeoXuong = new Button();
             Saudo = new Button();
             label1 = new Label();
@@ -51,6 +50,7 @@ namespace DoAnNhom
             pictureBox1 = new PictureBox();
             Them_Anh = new Button();
             pictureBox2 = new PictureBox();
+            KeoLen = new Button();
             ((System.ComponentModel.ISupportInitialize)axWindowsMediaPlayer1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -58,12 +58,13 @@ namespace DoAnNhom
             // 
             // ListNhac
             // 
-            ListNhac.BackColor = Color.MistyRose;
-            ListNhac.Font = new Font("Minecraft", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ListNhac.BackColor = Color.Gray;
+            ListNhac.Font = new Font("Minecraft", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            ListNhac.ForeColor = SystemColors.ButtonHighlight;
             ListNhac.FormattingEnabled = true;
-            ListNhac.Location = new Point(702, 54);
+            ListNhac.Location = new Point(702, 44);
             ListNhac.Name = "ListNhac";
-            ListNhac.Size = new Size(314, 498);
+            ListNhac.Size = new Size(316, 460);
             ListNhac.TabIndex = 0;
             ListNhac.SelectedIndexChanged += ListNhac_SelectedIndexChanged;
             // 
@@ -71,26 +72,27 @@ namespace DoAnNhom
             // 
             history.Font = new Font("Minecraft", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             history.FormattingEnabled = true;
-            history.Location = new Point(702, 54);
+            history.Location = new Point(702, 44);
             history.Name = "history";
             history.Size = new Size(314, 498);
             history.TabIndex = 1;
             // 
             // textBox1
             // 
-            textBox1.BackColor = Color.Bisque;
+            textBox1.BackColor = Color.DarkOliveGreen;
             textBox1.Font = new Font("Minecraft", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(780, 19);
+            textBox1.ForeColor = SystemColors.Info;
+            textBox1.Location = new Point(804, 17);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(110, 29);
+            textBox1.Size = new Size(117, 21);
             textBox1.TabIndex = 2;
-            textBox1.Text = "Your List";
+            textBox1.Text = " Your List";
             // 
             // MusicPlayomg
             // 
-            MusicPlayomg.BackColor = Color.YellowGreen;
-            MusicPlayomg.Font = new Font("Minecraft", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            MusicPlayomg.BackColor = Color.LemonChiffon;
+            MusicPlayomg.Font = new Font("Minecraft", 9.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 163);
             MusicPlayomg.Location = new Point(111, 601);
             MusicPlayomg.Multiline = true;
             MusicPlayomg.Name = "MusicPlayomg";
@@ -100,22 +102,23 @@ namespace DoAnNhom
             // 
             // playing
             // 
-            playing.BackColor = Color.Pink;
-            playing.Font = new Font("Minecraft", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            playing.BackColor = Color.DarkOliveGreen;
+            playing.Font = new Font("Minecraft", 9.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 163);
             playing.Location = new Point(12, 601);
             playing.Multiline = true;
             playing.Name = "playing";
-            playing.Size = new Size(80, 40);
+            playing.Size = new Size(93, 40);
             playing.TabIndex = 4;
-            playing.Text = "Playing";
+            playing.Text = " Playing";
             // 
             // Exit
             // 
             Exit.BackgroundImage = Properties.Resources._2de928a6b9fe4026caeec0fd810062f1c251fb97;
             Exit.BackgroundImageLayout = ImageLayout.Stretch;
-            Exit.Location = new Point(1009, 601);
+            Exit.FlatStyle = FlatStyle.Flat;
+            Exit.Location = new Point(1038, 609);
             Exit.Name = "Exit";
-            Exit.Size = new Size(50, 50);
+            Exit.Size = new Size(43, 40);
             Exit.TabIndex = 5;
             Exit.UseVisualStyleBackColor = true;
             Exit.Click += Exit_Click;
@@ -123,7 +126,7 @@ namespace DoAnNhom
             // axWindowsMediaPlayer1
             // 
             axWindowsMediaPlayer1.Enabled = true;
-            axWindowsMediaPlayer1.Location = new Point(12, 12);
+            axWindowsMediaPlayer1.Location = new Point(12, 13);
             axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
             axWindowsMediaPlayer1.OcxState = (AxHost.State)resources.GetObject("axWindowsMediaPlayer1.OcxState");
             axWindowsMediaPlayer1.Size = new Size(662, 499);
@@ -131,11 +134,13 @@ namespace DoAnNhom
             // 
             // previous
             // 
-            previous.BackgroundImage = Properties.Resources.previous;
+            previous.BackgroundImage = (Image)resources.GetObject("previous.BackgroundImage");
             previous.BackgroundImageLayout = ImageLayout.Stretch;
-            previous.Location = new Point(41, 504);
+            previous.FlatStyle = FlatStyle.Flat;
+            previous.ForeColor = SystemColors.ButtonHighlight;
+            previous.Location = new Point(118, 504);
             previous.Name = "previous";
-            previous.Size = new Size(74, 63);
+            previous.Size = new Size(76, 63);
             previous.TabIndex = 9;
             previous.UseVisualStyleBackColor = true;
             previous.Click += previous_Click;
@@ -144,9 +149,11 @@ namespace DoAnNhom
             // 
             play.BackgroundImage = Properties.Resources.play;
             play.BackgroundImageLayout = ImageLayout.Stretch;
-            play.Location = new Point(159, 504);
+            play.FlatStyle = FlatStyle.Flat;
+            play.ForeColor = SystemColors.ControlLightLight;
+            play.Location = new Point(227, 498);
             play.Name = "play";
-            play.Size = new Size(64, 63);
+            play.Size = new Size(68, 69);
             play.TabIndex = 10;
             play.UseVisualStyleBackColor = true;
             play.Click += play_Click;
@@ -155,20 +162,23 @@ namespace DoAnNhom
             // 
             pause.BackgroundImage = Properties.Resources.stop;
             pause.BackgroundImageLayout = ImageLayout.Stretch;
-            pause.Location = new Point(268, 504);
+            pause.FlatStyle = FlatStyle.Flat;
+            pause.ForeColor = SystemColors.ButtonHighlight;
+            pause.Location = new Point(331, 499);
             pause.Name = "pause";
-            pause.Size = new Size(67, 63);
+            pause.Size = new Size(68, 69);
             pause.TabIndex = 11;
             pause.UseVisualStyleBackColor = true;
             pause.Click += pause_Click;
             // 
             // ADD
             // 
-            ADD.BackColor = Color.Bisque;
+            ADD.BackColor = Color.DarkOliveGreen;
+            ADD.FlatStyle = FlatStyle.Flat;
             ADD.Font = new Font("Minecraft", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ADD.Location = new Point(702, 504);
+            ADD.Location = new Point(704, 491);
             ADD.Name = "ADD";
-            ADD.Size = new Size(162, 48);
+            ADD.Size = new Size(143, 48);
             ADD.TabIndex = 13;
             ADD.Text = "ADD";
             ADD.UseVisualStyleBackColor = false;
@@ -176,46 +186,42 @@ namespace DoAnNhom
             // 
             // Remove
             // 
-            Remove.BackColor = Color.Bisque;
+            Remove.AccessibleRole = AccessibleRole.None;
+            Remove.BackColor = Color.DarkOliveGreen;
+            Remove.FlatStyle = FlatStyle.Popup;
             Remove.Font = new Font("Minecraft", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Remove.Location = new Point(870, 504);
+            Remove.Location = new Point(845, 491);
             Remove.Name = "Remove";
-            Remove.Size = new Size(146, 48);
+            Remove.Size = new Size(173, 48);
             Remove.TabIndex = 14;
             Remove.Text = "REMOVE";
             Remove.UseVisualStyleBackColor = false;
             Remove.Click += Remove_Click;
             // 
-            // KeoLen
-            // 
-            KeoLen.BackgroundImage = Properties.Resources.go_up;
-            KeoLen.BackgroundImageLayout = ImageLayout.Stretch;
-            KeoLen.Location = new Point(965, 218);
-            KeoLen.Name = "KeoLen";
-            KeoLen.Size = new Size(51, 56);
-            KeoLen.TabIndex = 15;
-            KeoLen.UseVisualStyleBackColor = true;
-            KeoLen.Click += KeoLen_Click;
-            // 
             // KeoXuong
             // 
-            KeoXuong.BackgroundImage = Properties.Resources.go_down;
+            KeoXuong.BackColor = SystemColors.ButtonShadow;
+            KeoXuong.BackgroundImage = (Image)resources.GetObject("KeoXuong.BackgroundImage");
             KeoXuong.BackgroundImageLayout = ImageLayout.Stretch;
-            KeoXuong.Location = new Point(965, 280);
+            KeoXuong.FlatStyle = FlatStyle.Flat;
+            KeoXuong.ForeColor = Color.DarkOliveGreen;
+            KeoXuong.Location = new Point(1022, 301);
             KeoXuong.Name = "KeoXuong";
-            KeoXuong.Size = new Size(51, 66);
+            KeoXuong.Size = new Size(41, 68);
             KeoXuong.TabIndex = 16;
-            KeoXuong.UseVisualStyleBackColor = true;
+            KeoXuong.UseVisualStyleBackColor = false;
             KeoXuong.Click += KeoXuong_Click;
             // 
             // Saudo
             // 
-            Saudo.BackColor = SystemColors.ActiveCaption;
+            Saudo.BackColor = SystemColors.Control;
             Saudo.BackgroundImage = Properties.Resources.next;
             Saudo.BackgroundImageLayout = ImageLayout.Stretch;
-            Saudo.Location = new Point(382, 504);
+            Saudo.FlatStyle = FlatStyle.Flat;
+            Saudo.ForeColor = SystemColors.ButtonHighlight;
+            Saudo.Location = new Point(436, 504);
             Saudo.Name = "Saudo";
-            Saudo.Size = new Size(74, 63);
+            Saudo.Size = new Size(76, 63);
             Saudo.TabIndex = 18;
             Saudo.UseVisualStyleBackColor = false;
             Saudo.Click += Saudo_Click;
@@ -223,27 +229,29 @@ namespace DoAnNhom
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = Color.MistyRose;
-            label1.Font = new Font("Minecraft", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(701, 563);
+            label1.BackColor = Color.Orange;
+            label1.BorderStyle = BorderStyle.FixedSingle;
+            label1.Font = new Font("Minecraft", 12.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(701, 554);
             label1.Name = "label1";
-            label1.Size = new Size(83, 19);
+            label1.Size = new Size(78, 19);
             label1.TabIndex = 21;
             label1.Text = "Search";
             // 
             // TxtSearch
             // 
-            TxtSearch.BackColor = Color.PeachPuff;
+            TxtSearch.BackColor = Color.LemonChiffon;
             TxtSearch.Font = new Font("Minecraft", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            TxtSearch.Location = new Point(701, 585);
+            TxtSearch.Location = new Point(701, 576);
             TxtSearch.Multiline = true;
             TxtSearch.Name = "TxtSearch";
-            TxtSearch.Size = new Size(272, 28);
+            TxtSearch.Size = new Size(313, 28);
             TxtSearch.TabIndex = 22;
             TxtSearch.TextChanged += TxtSearch_TextChanged_1;
             // 
             // pictureBox1
             // 
+            pictureBox1.BackColor = SystemColors.ControlDark;
             pictureBox1.Location = new Point(12, 12);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(662, 457);
@@ -252,24 +260,40 @@ namespace DoAnNhom
             // 
             // Them_Anh
             // 
-            Them_Anh.BackgroundImage = Properties.Resources.them_anh;
+            Them_Anh.BackgroundImage = (Image)resources.GetObject("Them_Anh.BackgroundImage");
             Them_Anh.BackgroundImageLayout = ImageLayout.Stretch;
-            Them_Anh.Location = new Point(619, 530);
+            Them_Anh.FlatStyle = FlatStyle.Flat;
+            Them_Anh.ForeColor = SystemColors.ControlLightLight;
+            Them_Anh.Location = new Point(575, 488);
             Them_Anh.Name = "Them_Anh";
-            Them_Anh.Size = new Size(55, 52);
+            Them_Anh.Size = new Size(88, 88);
             Them_Anh.TabIndex = 24;
             Them_Anh.UseVisualStyleBackColor = true;
             Them_Anh.Click += Them_Anh_Click;
             // 
             // pictureBox2
             // 
-            pictureBox2.BackgroundImage = Properties.Resources.Background;
+            pictureBox2.BackColor = SystemColors.ButtonHighlight;
             pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox2.Location = new Point(12, 479);
+            pictureBox2.Location = new Point(12, 480);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(662, 103);
             pictureBox2.TabIndex = 25;
             pictureBox2.TabStop = false;
+            // 
+            // KeoLen
+            // 
+            KeoLen.BackColor = Color.Azure;
+            KeoLen.BackgroundImage = (Image)resources.GetObject("KeoLen.BackgroundImage");
+            KeoLen.BackgroundImageLayout = ImageLayout.Stretch;
+            KeoLen.FlatStyle = FlatStyle.Flat;
+            KeoLen.ForeColor = Color.DarkGreen;
+            KeoLen.Location = new Point(1022, 203);
+            KeoLen.Name = "KeoLen";
+            KeoLen.Size = new Size(41, 68);
+            KeoLen.TabIndex = 15;
+            KeoLen.UseVisualStyleBackColor = false;
+            KeoLen.Click += KeoLen_Click;
             // 
             // Form1
             // 
@@ -277,7 +301,7 @@ namespace DoAnNhom
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.BACKGROUND__2_;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1055, 653);
+            ClientSize = new Size(1085, 653);
             Controls.Add(Them_Anh);
             Controls.Add(Saudo);
             Controls.Add(pause);
@@ -321,7 +345,6 @@ namespace DoAnNhom
         private Button pause;
         private Button ADD;
         private Button Remove;
-        private Button KeoLen;
         private Button KeoXuong;
         private Button Saudo;
         private MenuStrip menuStrip1;
@@ -330,5 +353,6 @@ namespace DoAnNhom
         private PictureBox pictureBox1;
         private Button Them_Anh;
         private PictureBox pictureBox2;
+        private Button KeoLen;
     }
 }
