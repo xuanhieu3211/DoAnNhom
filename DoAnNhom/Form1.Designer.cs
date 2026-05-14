@@ -59,12 +59,12 @@ namespace DoAnNhom
             // ListNhac
             // 
             ListNhac.BackColor = Color.Gray;
-            ListNhac.Font = new Font("MS PGothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ListNhac.Font = new Font("Minecraft", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 163);
             ListNhac.ForeColor = SystemColors.ButtonHighlight;
             ListNhac.FormattingEnabled = true;
             ListNhac.Location = new Point(702, 44);
             ListNhac.Name = "ListNhac";
-            ListNhac.Size = new Size(316, 441);
+            ListNhac.Size = new Size(316, 460);
             ListNhac.TabIndex = 0;
             ListNhac.SelectedIndexChanged += ListNhac_SelectedIndexChanged;
             // 
@@ -74,18 +74,18 @@ namespace DoAnNhom
             history.FormattingEnabled = true;
             history.Location = new Point(702, 44);
             history.Name = "history";
-            history.Size = new Size(314, 498);
+            history.Size = new Size(314, 496);
             history.TabIndex = 1;
             // 
             // textBox1
             // 
             textBox1.BackColor = Color.DarkOliveGreen;
-            textBox1.Font = new Font("Minecraft", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            textBox1.Font = new Font("Minecraft", 12F, FontStyle.Regular, GraphicsUnit.Point, 163);
             textBox1.ForeColor = SystemColors.Info;
-            textBox1.Location = new Point(804, 17);
+            textBox1.Location = new Point(758, 1);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(117, 21);
+            textBox1.Size = new Size(117, 37);
             textBox1.TabIndex = 2;
             textBox1.Text = " Your List";
             // 
@@ -232,7 +232,7 @@ namespace DoAnNhom
             label1.BackColor = Color.Orange;
             label1.BorderStyle = BorderStyle.FixedSingle;
             label1.Font = new Font("Minecraft", 12.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(701, 554);
+            label1.Location = new Point(701, 552);
             label1.Name = "label1";
             label1.Size = new Size(78, 19);
             label1.TabIndex = 21;
@@ -240,12 +240,12 @@ namespace DoAnNhom
             // 
             // TxtSearch
             // 
-            TxtSearch.BackColor = Color.LemonChiffon;
-            TxtSearch.Font = new Font("Minecraft", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            TxtSearch.Location = new Point(701, 576);
+            TxtSearch.BackColor = Color.Beige;
+            TxtSearch.Font = new Font("Minecraft", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            TxtSearch.Location = new Point(701, 574);
             TxtSearch.Multiline = true;
             TxtSearch.Name = "TxtSearch";
-            TxtSearch.Size = new Size(313, 28);
+            TxtSearch.Size = new Size(313, 32);
             TxtSearch.TabIndex = 22;
             TxtSearch.TextChanged += TxtSearch_TextChanged_1;
             // 
