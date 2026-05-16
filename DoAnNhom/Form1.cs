@@ -62,15 +62,29 @@ namespace DoAnNhom
 
         private void Remove_Click(object sender, EventArgs e)
         {
-            if (ListNhac.SelectedIndex != -1)
+            if (ListNhac.SelectedIndex != -1 && ListNhac.SelectedIndex < displayedIndices.Count)
             {
                 // Lấy vị trí GỐC thông qua bộ từ điển
                 int realIndex = displayedIndices[ListNhac.SelectedIndex];
 
-                player.RemoveTrackAt(realIndex);
-                filePaths.RemoveAt(realIndex);
+                if (realIndex >= 0 && realIndex < filePaths.Count)
+                {
+                    // Dừng nhạc TRƯỚC khi xóa
+                    suppressListSelectionPlayback = true;
 
-                RefreshListBox(); // Tải lại danh sách sau khi xóa
+                    player.RemoveTrackAt(realIndex);
+                    filePaths.RemoveAt(realIndex);
+
+                    RefreshListBox(); // Tải lại danh sách sau khi xóa
+
+                    // Nếu danh sách không trống, chọn bài đầu tiên
+                    if (ListNhac.Items.Count > 0)
+                    {
+                        ListNhac.SelectedIndex = 0;
+                    }
+
+                    suppressListSelectionPlayback = false;
+                }
             }
             else
             {
@@ -100,10 +114,12 @@ namespace DoAnNhom
 
         private void ListNhac_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ListNhac.SelectedIndex != -1)
-            {
-                if (suppressListSelectionPlayback) return;
+            // Nếu suppressListSelectionPlayback = true, không phát nhạc
+            // Điều này để tránh phát 2 lần khi RefreshListBox
+            if (suppressListSelectionPlayback) return;
 
+            if (ListNhac.SelectedIndex != -1 && ListNhac.SelectedIndex < displayedIndices.Count)
+            {
                 // Giải mã vị trí ẢO trên giao diện thành vị trí THẬT
                 int realIdx = displayedIndices[ListNhac.SelectedIndex];
                 PlayAtIndex(realIdx);
@@ -188,6 +204,8 @@ namespace DoAnNhom
             if (axWindowsMediaPlayer1 == null) return;
             var ctl = axWindowsMediaPlayer1.Ctlcontrols;
 
+            if (ctl == null) return;
+
             bool sameUrl = string.Equals(axWindowsMediaPlayer1.URL, filePaths[realIdx], StringComparison.OrdinalIgnoreCase);
             if (sameUrl && axWindowsMediaPlayer1.playState == WMPPlayState.wmppsPaused)
             {
@@ -195,10 +213,10 @@ namespace DoAnNhom
                 return;
             }
 
-            if (ctl != null) ctl.stop();
+            ctl.stop();
 
             axWindowsMediaPlayer1.URL = filePaths[realIdx];
-            if (ctl != null) ctl.play();
+            ctl.play();
         }
 
         private void Exit_Click(object sender, EventArgs e)
@@ -235,7 +253,7 @@ namespace DoAnNhom
                 }
             }
 
-            suppressListSelectionPlayback = false; // Mở khóa
+            suppressListSelectionPlayback = false; // Mở khóa sau khi load xong
         }
 
         private void Them_Anh_Click(object sender, EventArgs e)
@@ -246,17 +264,26 @@ namespace DoAnNhom
 
             if (openFile.ShowDialog() == DialogResult.OK)
             {
-                // 1. Dọn dẹp ảnh cũ (nếu có) để giải phóng bộ nhớ
-                if (pictureBox1.Image != null)
+                try
                 {
-                    pictureBox1.Image.Dispose();
+                    // 1. Dọn dẹp ảnh cũ (nếu có) để giải phóng bộ nhớ
+                    if (pictureBox1.Image != null)
+                    {
+                        pictureBox1.Image.Dispose();
+                        pictureBox1.Image = null;
+                    }
+
+                    // 2. Load ảnh mới (kể cả GIF động) vào PictureBox
+                    Image newImage = Image.FromFile(openFile.FileName);
+                    pictureBox1.Image = newImage;
+
+                    // 3. Chỉnh cho ảnh vừa vặn với khung
+                    pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
                 }
-
-                // 2. Load ảnh mới (kể cả GIF động) vào PictureBox
-                pictureBox1.Image = Image.FromFile(openFile.FileName);
-
-                // 3. Chỉnh cho ảnh vừa vặn với khung
-                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Lỗi khi tải ảnh: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

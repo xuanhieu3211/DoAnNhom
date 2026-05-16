@@ -113,8 +113,15 @@ namespace MCplaylist
         // 3. Tua bài hát đến một vị trí cụ thể (tính bằng giây)
         public void SetCurrentPosition(double positionSeconds)
         {
-            if (wmpEngine.currentMedia != null)
-                wmpEngine.controls.currentPosition = positionSeconds;
+            try
+            {
+                if (wmpEngine?.currentMedia != null)
+                    wmpEngine.controls.currentPosition = positionSeconds;
+            }
+            catch
+            {
+                // Bỏ qua lỗi nếu không thể set position (ví dụ: file không hợp lệ)
+            }
         }
         public MyPlaylistManager()
         {
@@ -193,21 +200,20 @@ namespace MCplaylist
             {
                 if (count == index)
                 {
+                    // Kiểm tra xem bài này có phải là bài đang phát không
+                    bool isCurrentTrack = (playlist.currentTrack == current);
+
                     // Ngắt kết nối để xóa Node
                     if (current.prev != null) current.prev.next = current.next;
                     if (current.next != null) current.next.prev = current.prev;
 
-                    // Nếu bài đang phát bị xóa, chuyển sang bài tiếp theo (hoặc lùi lại nếu là bài cuối)
-                    if (playlist.currentTrack == current)
+                    // Nếu bài đang phát bị xóa, cần dừng nhạc
+                    if (isCurrentTrack)
                     {
-                        Pause(); // Dừng nhạc
-                        playlist.currentTrack = current.next ?? current.prev; // Ưu tiên bài sau, không có thì lùi
+                        Pause(); // Dừng nhạc ngay lập tức
 
-                        // Nếu danh sách không rỗng (khác header) thì phát tiếp
-                        if (playlist.currentTrack != playlist.header && playlist.currentTrack != null)
-                        {
-                            Play();
-                        }
+                        // Không tự động chọn bài khác - để Form1 tự xử lý
+                        playlist.currentTrack = null;
                     }
                     return;
                 }
@@ -226,8 +232,7 @@ namespace MCplaylist
                 if (count == index)
                 {
                     playlist.currentTrack = current; // Đặt con trỏ vào bài được chọn
-                    // NOTE: Do not auto-play here when called from UI that manages playback control.
-                    // Use Play() explicitly to start playback.
+                
                     return;
                 }
                 count++;
