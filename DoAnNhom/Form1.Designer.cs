@@ -80,12 +80,12 @@ namespace DoAnNhom
             // textBox1
             // 
             textBox1.BackColor = Color.DarkOliveGreen;
-            textBox1.Font = new Font("Minecraft", 12F, FontStyle.Regular, GraphicsUnit.Point, 163);
+            textBox1.Font = new Font("Minecraft", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox1.ForeColor = SystemColors.Info;
             textBox1.Location = new Point(758, 1);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(117, 37);
+            textBox1.Size = new Size(125, 37);
             textBox1.TabIndex = 2;
             textBox1.Text = " Your List";
             // 
