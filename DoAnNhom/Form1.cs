@@ -12,24 +12,16 @@ namespace DoAnNhom
     {
         private MyPlaylistManager player;
         private bool suppressListSelectionPlayback = false;
-
         private List<string> filePaths = new List<string>();
-
-        // BỘ TỪ ĐIỂN NGẦM: Ánh xạ vị trí trên giao diện tìm kiếm với vị trí gốc
         private List<int> displayedIndices = new List<int>();
-
         public Form1()
         {
             InitializeComponent();
             player = new MyPlaylistManager();
-
-            // Tự động gắn sự kiện tìm kiếm cho TextBox bạn vừa kéo thả
             if (TxtSearch != null)
             {
                 TxtSearch.TextChanged += TxtSearch_TextChanged_1;
             }
-
-            // Đăng ký sự kiện của Windows Media Player
             if (axWindowsMediaPlayer1 != null)
             {
                 axWindowsMediaPlayer1.PositionChange += AxWindowsMediaPlayer1_PositionChange;
@@ -54,30 +46,24 @@ namespace DoAnNhom
                 foreach (string path in openFile.FileNames)
                 {
                     filePaths.Add(path);
-                    player.AddMusic(path); // Thêm vào Double Linked List ngầm
+                    player.AddMusic(path);
                 }
-                RefreshListBox(); // Hiển thị lên danh sách
+                RefreshListBox();
             }
         }
-
         private void Remove_Click(object sender, EventArgs e)
         {
             if (ListNhac.SelectedIndex != -1 && ListNhac.SelectedIndex < displayedIndices.Count)
             {
-                // Lấy vị trí GỐC thông qua bộ từ điển
                 int realIndex = displayedIndices[ListNhac.SelectedIndex];
 
                 if (realIndex >= 0 && realIndex < filePaths.Count)
                 {
-                    // Dừng nhạc TRƯỚC khi xóa
                     suppressListSelectionPlayback = true;
 
                     player.RemoveTrackAt(realIndex);
                     filePaths.RemoveAt(realIndex);
-
-                    RefreshListBox(); // Tải lại danh sách sau khi xóa
-
-                    // Nếu danh sách không trống, chọn bài đầu tiên
+                    RefreshListBox(); 
                     if (ListNhac.Items.Count > 0)
                     {
                         ListNhac.SelectedIndex = 0;
@@ -91,7 +77,6 @@ namespace DoAnNhom
                 MessageBox.Show("Vui lòng chọn một bài hát để xóa!");
             }
         }
-
         private void KeoLen_Click(object sender, EventArgs e)
         {
             if (ListNhac.SelectedIndex > 0)
@@ -101,7 +86,6 @@ namespace DoAnNhom
                 suppressListSelectionPlayback = false;
             }
         }
-
         private void KeoXuong_Click(object sender, EventArgs e)
         {
             if (ListNhac.SelectedIndex < ListNhac.Items.Count - 1)
@@ -111,21 +95,15 @@ namespace DoAnNhom
                 suppressListSelectionPlayback = false;
             }
         }
-
         private void ListNhac_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Nếu suppressListSelectionPlayback = true, không phát nhạc
-            // Điều này để tránh phát 2 lần khi RefreshListBox
+        {        
             if (suppressListSelectionPlayback) return;
-
             if (ListNhac.SelectedIndex != -1 && ListNhac.SelectedIndex < displayedIndices.Count)
-            {
-                // Giải mã vị trí ẢO trên giao diện thành vị trí THẬT
+            {            
                 int realIdx = displayedIndices[ListNhac.SelectedIndex];
                 PlayAtIndex(realIdx);
             }
         }
-
         private void previous_Click(object sender, EventArgs e)
         {
             if (ListNhac.Items.Count == 0) return;
@@ -133,14 +111,13 @@ namespace DoAnNhom
             int idx = ListNhac.SelectedIndex;
             if (idx > 0)
             {
-                ListNhac.SelectedIndex = idx - 1; // Nhảy vệt xanh (sẽ tự kích hoạt nhạc)
+                ListNhac.SelectedIndex = idx - 1;
             }
             else if (idx == 0)
             {
-                ListNhac.SelectedIndex = ListNhac.Items.Count - 1; // Vòng lặp
+                ListNhac.SelectedIndex = ListNhac.Items.Count - 1; 
             }
         }
-
         private void Saudo_Click(object sender, EventArgs e)
         {
             if (ListNhac.Items.Count == 0) return;
@@ -150,9 +127,8 @@ namespace DoAnNhom
             if (idx < 0 && ListNhac.Items.Count > 0)
                 ListNhac.SelectedIndex = 0;
             else if (idx < ListNhac.Items.Count - 1)
-                ListNhac.SelectedIndex = idx + 1; // Nhảy vệt xanh (sẽ tự kích hoạt nhạc)
-            else
-                ListNhac.SelectedIndex = 0; // Vòng lặp
+                ListNhac.SelectedIndex = idx + 1;
+                ListNhac.SelectedIndex = 0; 
         }
 
         private void play_Click(object sender, EventArgs e)
@@ -163,7 +139,7 @@ namespace DoAnNhom
 
             if (sel >= 0 && sel < ListNhac.Items.Count)
             {
-                int realIdx = displayedIndices[sel]; // Dịch ngược Index
+                int realIdx = displayedIndices[sel]; 
 
                 if (axWindowsMediaPlayer1 != null && string.Equals(axWindowsMediaPlayer1.URL, filePaths[realIdx], StringComparison.OrdinalIgnoreCase)
                     && axWindowsMediaPlayer1.playState == WMPPlayState.wmppsPaused)
@@ -180,7 +156,6 @@ namespace DoAnNhom
                 ListNhac.SelectedIndex = 0;
             }
         }
-
         private void pause_Click(object sender, EventArgs e)
         {
             if (axWindowsMediaPlayer1 != null && axWindowsMediaPlayer1.Ctlcontrols != null)
@@ -188,12 +163,10 @@ namespace DoAnNhom
                 axWindowsMediaPlayer1.Ctlcontrols.pause();
             }
         }
-
         private void AxWindowsMediaPlayer1_PositionChange(object sender, AxWMPLib._WMPOCXEvents_PositionChangeEvent e)
         {
             if (player != null) player.SetCurrentPosition((int)e.newPosition);
         }
-
         private void PlayAtIndex(int realIdx)
         {
             if (realIdx < 0 || realIdx >= filePaths.Count) return;
@@ -218,13 +191,11 @@ namespace DoAnNhom
             axWindowsMediaPlayer1.URL = filePaths[realIdx];
             ctl.play();
         }
-
         private void Exit_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Bạn có muốn thoát không :(?", "Thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             if (result == DialogResult.Yes) this.Close();
         }
-
         private void MusicPlayomg_TextChanged(object sender, EventArgs e) { }
 
         private void TxtSearch_TextChanged_1(object sender, EventArgs e)
@@ -233,51 +204,37 @@ namespace DoAnNhom
         }
         private void RefreshListBox()
         {
-            suppressListSelectionPlayback = true; // Khóa nhạc để không phát lung tung khi load
-
+            suppressListSelectionPlayback = true;
             ListNhac.Items.Clear();
-            displayedIndices.Clear();
-
-            // Lấy chữ từ TextBox bạn kéo thả
+            displayedIndices.Clear();         
             string keyword = TxtSearch != null ? TxtSearch.Text.ToLower() : "";
 
             for (int i = 0; i < filePaths.Count; i++)
             {
-                string fileName = Path.GetFileName(filePaths[i]);
-
-                // Nếu ô tìm kiếm trống, hoặc tên file có chứa từ khóa
+                string fileName = Path.GetFileName(filePaths[i]);      
                 if (string.IsNullOrEmpty(keyword) || fileName.ToLower().Contains(keyword))
                 {
-                    ListNhac.Items.Add(fileName); // Đưa lên giao diện
-                    displayedIndices.Add(i);      // Lưu lại vị trí GỐC
+                    ListNhac.Items.Add(fileName); 
+                    displayedIndices.Add(i);      
                 }
             }
-
-            suppressListSelectionPlayback = false; // Mở khóa sau khi load xong
+            suppressListSelectionPlayback = false; 
         }
-
         private void Them_Anh_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFile = new OpenFileDialog();
-            // Chỉ lọc ra các file ảnh (bao gồm cả gif)
+            OpenFileDialog openFile = new OpenFileDialog();          
             openFile.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
-
             if (openFile.ShowDialog() == DialogResult.OK)
             {
                 try
-                {
-                    // 1. Dọn dẹp ảnh cũ (nếu có) để giải phóng bộ nhớ
+                {              
                     if (pictureBox1.Image != null)
                     {
                         pictureBox1.Image.Dispose();
                         pictureBox1.Image = null;
-                    }
-
-                    // 2. Load ảnh mới (kể cả GIF động) vào PictureBox
+                    }               
                     Image newImage = Image.FromFile(openFile.FileName);
-                    pictureBox1.Image = newImage;
-
-                    // 3. Chỉnh cho ảnh vừa vặn với khung
+                    pictureBox1.Image = newImage;               
                     pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
                 }
                 catch (Exception ex)

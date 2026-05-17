@@ -3,10 +3,10 @@ using MCplaylist;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using WMPLib; // Thư viện điều khiển Windows Media Player ngầm
+using WMPLib;
 
 namespace MCplaylist
-{// --- 1. SINGLE LINKED LIST ---
+{
     public class SNode
     {
         public object data;
@@ -16,8 +16,6 @@ namespace MCplaylist
     public class SingleLinkedList
     {
         public SNode header;
-
-        // Thêm bài mới vào ĐẦU danh sách (Bài vừa nghe xong hiện lên trên cùng)
         public void AddFirst(string filePath)
         {
             SNode newNode = new SNode(filePath);
@@ -33,7 +31,6 @@ namespace MCplaylist
 
         public void Add(string filePath)
         {
-            // Nếu filePath hợp lệ thì mới thêm vào
             if (filePath != null)
             {
                 tracks.Add(filePath);
@@ -47,14 +44,11 @@ namespace MCplaylist
         public int Count => tracks.Count;
         public string GetAt(int index) => (index >= 0 && index < tracks.Count) ? tracks[index] : null;
     }
-    // 1. LỚP NODE: Đóng vai trò là một "mắt xích" trong danh sách
     public class DNode
     {
-        public object data;   // Biến lưu trữ đường dẫn tệp nhạc (Path)
-        public DNode next;    // Con trỏ trỏ đến bài hát tiếp theo
-        public DNode prev;    // Con trỏ trỏ về bài hát phía trước
-
-        // Hàm khởi tạo Node với dữ liệu truyền vào
+        public object data;  
+        public DNode next;    
+        public DNode prev;    
         public DNode(object data)
         {
             this.data = data;
@@ -62,47 +56,38 @@ namespace MCplaylist
             this.prev = null;
         }
     }
-    // 2. LỚP DANH SÁCH LIÊN KẾT ĐÔI: Quản lý toàn bộ hàng đợi nhạc
+   
     public class DoubleLinkedList
     {
-        public DNode header;       // Nút gốc (làm mốc định vị đầu danh sách)
-        public DNode currentTrack; // Biến lưu trữ bài hát đang được chọn để phát
-
+        public DNode header;       
+        public DNode currentTrack; 
         public DoubleLinkedList()
         {
-            this.header = new DNode("Header"); // Khởi tạo mốc giả (Header)
-            this.currentTrack = null;          // Ban đầu chưa có bài nào phát
+            this.header = new DNode("Header"); 
+            this.currentTrack = null;          
         }
-
-        // Hàm thêm một bài hát mới vào cuối danh sách
         public void AddTrack(string filePath)
         {
             DNode current = header;
-            // Duyệt từ đầu đến cuối danh sách để tìm nút cuối cùng
             while (current.next != null) current = current.next;
 
-            DNode newNode = new DNode(filePath); // Tạo nút mới chứa đường dẫn nhạc
-            newNode.prev = current;              // Nối ngược về nút cũ
-            current.next = newNode;              // Nút cũ nối tiến đến nút mới
-
-            // Nếu đây là bài đầu tiên được thêm, chọn nó làm bài phát mặc định
+            DNode newNode = new DNode(filePath); 
+            newNode.prev = current;              
+            current.next = newNode;            
             if (currentTrack == null) currentTrack = newNode;
         }
     }
-    // 3. LỚP QUẢN LÝ PHÁT NHẠC (MODEL): Kết nối Logic và Trình phát WMP
+  
     public class MyPlaylistManager
     {
-        private DoubleLinkedList playlist;  // Đối tượng quản lý danh sách nhạc
-        private WindowsMediaPlayer wmpEngine; // Đối tượng điều khiển trình phát ngầm
-                                              // 1. Lấy tổng thời lượng bài hát (tính bằng giây)
+        private DoubleLinkedList playlist; 
+        private WindowsMediaPlayer wmpEngine;
         public double GetDuration()
         {
             if (wmpEngine.currentMedia != null)
                 return wmpEngine.currentMedia.duration;
             return 0;
         }
-
-        // 2. Lấy vị trí thời gian hiện tại (tính bằng giây)
         public double GetCurrentPosition()
         {
             if (wmpEngine.currentMedia != null)
@@ -110,7 +95,6 @@ namespace MCplaylist
             return 0;
         }
 
-        // 3. Tua bài hát đến một vị trí cụ thể (tính bằng giây)
         public void SetCurrentPosition(double positionSeconds)
         {
             try
@@ -120,14 +104,14 @@ namespace MCplaylist
             }
             catch
             {
-                // Bỏ qua lỗi nếu không thể set position (ví dụ: file không hợp lệ)
+                
             }
         }
         public MyPlaylistManager()
         {
-            playlist = new DoubleLinkedList();    // Khởi tạo danh sách
-            wmpEngine = new WindowsMediaPlayer(); // Khởi tạo bộ máy WMP
-            wmpEngine.settings.autoStart = false; // Tắt chế độ tự phát khi vừa nạp file
+            playlist = new DoubleLinkedList();
+            wmpEngine = new WindowsMediaPlayer(); 
+            wmpEngine.settings.autoStart = false;
         }
 
         public DNode Find(object value)
@@ -150,69 +134,51 @@ namespace MCplaylist
                 afterNode.next = newNode;
             }
         }
-        // Hàm gọi từ Form để thêm nhạc
         public void AddMusic(string filePath) => playlist.AddTrack(filePath);
-
-        // Hàm thực hiện phát nhạc của bài hiện tại
         public void Play()
         {
             if (playlist.currentTrack != null)
             {
-                // Nạp đường dẫn file từ Node vào WMP và ra lệnh Play
                 wmpEngine.URL = playlist.currentTrack.data.ToString();
                 wmpEngine.controls.play();
             }
         }
-        // Hàm tạm dừng nhạc
         public void Pause() => wmpEngine.controls.pause();
 
-        // Hàm chuyển sang bài tiếp theo
         public void NextTrack()
         {
-            // Kiểm tra nếu có bài tiếp theo thì mới chuyển
+
             if (playlist.currentTrack != null && playlist.currentTrack.next != null)
             {
-                playlist.currentTrack = playlist.currentTrack.next; // Dịch chuyển con trỏ
-                Play(); // Phát bài mới ngay lập tức
+                playlist.currentTrack = playlist.currentTrack.next; 
+                Play();
             }
         }
-        // Hàm quay lại bài trước đó
         public void PreviousTrack()
         {
-            // Kiểm tra bài trước tồn tại và không phải là nút Header giả
             if (playlist.currentTrack != null && playlist.currentTrack.prev != null && playlist.currentTrack.prev != playlist.header)
             {
-                playlist.currentTrack = playlist.currentTrack.prev; // Dịch chuyển con trỏ lùi lại
-                Play(); // Phát bài
+                playlist.currentTrack = playlist.currentTrack.prev; 
+                Play(); 
             }
         }
-        // --- THÊM VÀO TRONG CLASS MyPlaylistManager ---
-
-        // Hàm 1: Xóa bài hát tại một vị trí (Index) cụ thể
         public void RemoveTrackAt(int index)
         {
-            if (playlist.header.next == null) return; // Danh sách trống
-
-            DNode current = playlist.header.next; // Bắt đầu từ Node đầu tiên có dữ liệu (bỏ qua Header)
+            if (playlist.header.next == null) return; 
+            DNode current = playlist.header.next;
             int count = 0;
 
             while (current != null)
             {
                 if (count == index)
                 {
-                    // Kiểm tra xem bài này có phải là bài đang phát không
                     bool isCurrentTrack = (playlist.currentTrack == current);
-
-                    // Ngắt kết nối để xóa Node
                     if (current.prev != null) current.prev.next = current.next;
                     if (current.next != null) current.next.prev = current.prev;
-
-                    // Nếu bài đang phát bị xóa, cần dừng nhạc
                     if (isCurrentTrack)
                     {
-                        Pause(); // Dừng nhạc ngay lập tức
+                        Pause(); 
 
-                        // Không tự động chọn bài khác - để Form1 tự xử lý
                         playlist.currentTrack = null;
                     }
                     return;
@@ -221,8 +187,6 @@ namespace MCplaylist
                 current = current.next;
             }
         }
-
-        // Hàm 2: Phát bài hát khi click chọn trên ListBox
         public void PlayTrackAt(int index)
         {
             DNode current = playlist.header.next;
@@ -231,7 +195,7 @@ namespace MCplaylist
             {
                 if (count == index)
                 {
-                    playlist.currentTrack = current; // Đặt con trỏ vào bài được chọn
+                    playlist.currentTrack = current; 
                 
                     return;
                 }
@@ -239,8 +203,6 @@ namespace MCplaylist
                 current = current.next;
             }
         }
-
-        // Set current track pointer without starting playback (UI will handle actual playback)
         public void SetCurrentTrackAt(int index)
         {
             DNode current = playlist.header.next;
@@ -257,10 +219,9 @@ namespace MCplaylist
             }
         }
     }
-    // 4. LỚP CHƯƠNG TRÌNH CHÍNH: Điểm khởi chạy của Windows Forms
     internal static class Program
     {
-        [STAThread] // Thuộc tính bắt buộc để chạy giao diện Windows mượt mà
+        [STAThread] 
         static void Main()
         {
             Application.SetCompatibleTextRenderingDefault(false);
